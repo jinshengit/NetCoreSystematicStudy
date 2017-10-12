@@ -23,60 +23,69 @@ namespace ch15
             app.UseStatusCodePages();
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute(); //default route : {controller}/{action}/{id?}
-            //app.UseMvc(routes =>
-            //{
-            //routes.MapRoute(
-            //    name: "ShopSchema2",
-            //    template: "Shop/OldAction",
-            //    defaults: new { controller = "Home", action = "Index" });
+            //app.UseMvcWithDefaultRoute(); //default route : {controller}/{action}/{id?}
+            app.UseMvc(routes =>
+            {
+                //routes.MapRoute(
+                //    name: "ShopSchema2",
+                //    template: "Shop/OldAction",
+                //    defaults: new { controller = "Home", action = "Index" });
 
-            //routes.MapRoute(
-            //    name: "ShopSchema",
-            //    template: "Shop/{action}",
-            //    defaults: new { controller = "Home" }); //Routing pattern : /Shop/Index
+                //routes.MapRoute(
+                //    name: "ShopSchema",
+                //    template: "Shop/{action}",
+                //    defaults: new { controller = "Home" }); //Routing pattern : /Shop/Index
 
-            //routes.MapRoute("", "X{controller}/{action}"); //Routing pattern : /XHome/Index
+                //routes.MapRoute("", "X{controller}/{action}"); //Routing pattern : /XHome/Index
 
-            //routes.MapRoute(
-            //    name: "default",
-            //    template: "{controller=Home}/{action=Index}");
+                routes.MapRoute(
+                    name: "NewRoute",
+                    template: "App/Do{action}",
+                    defaults: new { controller = "Home" });
 
-            ////Static URL Segments
-            //routes.MapRoute(
-            //    name: "",
-            //    template: "Public/{controller=Home}/{action=Index}");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
 
-            //routes.MapRoute(
-            //    name: "MyRoute",
-            //    template: "{controller=Home}/{action=Index}/{id=DefaultId}");
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}");
 
-            //routes.MapRoute(
-            //    name: "MyRoute",
-            //    template: "{controller=Home}/{action=Index}/{id?}");
+                ////Static URL Segments
+                //routes.MapRoute(
+                //    name: "",
+                //    template: "Public/{controller=Home}/{action=Index}");
 
-            //routes.MapRoute(
-            //    name: "MyRoute",
-            //    template: "{controller=Home}/{action=Index}/{id?}/{*catchall}");
+                //routes.MapRoute(
+                //    name: "MyRoute",
+                //    template: "{controller=Home}/{action=Index}/{id=DefaultId}");
 
-            //routes.MapRoute(
-            //    name: "MyRoute",
-            //    template: "{controller=Home}/{action=Index}/{id:int?}"); //constraining routes
+                //routes.MapRoute(
+                //    name: "MyRoute",
+                //    template: "{controller=Home}/{action=Index}/{id?}");
 
-            //routes.MapRoute(
-            //    name: "MyRoute",
-            //    template: "{controller}/{action}/{id?}",
-            //    defaults: new { controller = "Home", action = "Index" },
-            //    constraints: new { id = new IntRouteConstraint() }); //constraining routes
+                //routes.MapRoute(
+                //    name: "MyRoute",
+                //    template: "{controller=Home}/{action=Index}/{id?}/{*catchall}");
 
-            //routes.MapRoute(
-            //    name: "MyRoute",
-            //    template: "{controller:regex(^H.*)=Home}/{action=Index}/{id?}");
+                //routes.MapRoute(
+                //    name: "MyRoute",
+                //    template: "{controller=Home}/{action=Index}/{id:int?}"); //constraining routes
 
-            //routes.MapRoute(
-            //    name: "MyRoute",
-            //    template: "{controller=Home}/{action=Index}/{id:alpha:minlength(6)?}");
-            //});
+                //routes.MapRoute(
+                //    name: "MyRoute",
+                //    template: "{controller}/{action}/{id?}",
+                //    defaults: new { controller = "Home", action = "Index" },
+                //    constraints: new { id = new IntRouteConstraint() }); //constraining routes
+
+                //routes.MapRoute(
+                //    name: "MyRoute",
+                //    template: "{controller:regex(^H.*)=Home}/{action=Index}/{id?}");
+
+                //routes.MapRoute(
+                //    name: "MyRoute",
+                //    template: "{controller=Home}/{action=Index}/{id:alpha:minlength(6)?}");
+            });
         }
     }
 }
